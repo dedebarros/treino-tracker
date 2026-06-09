@@ -1,0 +1,14 @@
+{
+  "name": "Método 20×100",
+  "short_name": "20×100",
+  "description": "Monitor do método de treino 20 exercícios × 100 reps",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0d0012",
+  "theme_color": "#0d0012",
+  "orientation": "portrait",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}
