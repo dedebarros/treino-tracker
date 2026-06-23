@@ -26,13 +26,16 @@
 }
 html,body{height:100%;overscroll-behavior:none;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;-webkit-font-smoothing:antialiased;}
-.app{max-width:720px;margin:0 auto;padding-bottom:calc(40px + var(--safe-bottom));}
+.app{max-width:720px;margin:0 auto;padding-bottom:calc(120px + var(--safe-bottom));}
 
 /* HEADER */
 .header-bar{position:sticky;top:0;z-index:50;background:var(--bg);padding:max(14px,var(--safe-top)) 14px 10px;border-bottom:1px solid var(--border);}
 .brand{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
 .brand-mark{width:32px;height:32px;background:var(--accent-dim);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;color:#fff;font-size:11px;}
 .brand-title{font-family:var(--sans);font-weight:800;font-size:15px;letter-spacing:.02em;flex:1;}
+.unit-toggle{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:2px;}
+.unit-btn{padding:5px 11px;background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;border-radius:5px;transition:all .15s;-webkit-appearance:none;}
+.unit-btn.active{background:var(--accent-dim);color:#fff;}
 
 .progress-overall{display:flex;align-items:center;gap:10px;}
 .progress-bar{flex:1;height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;}
@@ -77,60 +80,29 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .g-puxar{background:rgba(74,222,128,.15);color:#4ade80;}
 .g-braco{background:rgba(244,114,182,.15);color:#f472b6;}
 .g-abdomen{background:rgba(96,165,250,.15);color:#60a5fa;}
-.g-cardio{background:rgba(244,114,182,.18);color:#fb923c;background:rgba(251,146,60,.18);}
 .ex-dot{color:var(--muted);font-size:10px;}
 .ex-progress{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600;}
 .ex-card.completo .ex-progress{color:var(--success);}
 
-/* BLOCOS - STEPPERS LADO A LADO (KG + LB + REPS) */
+/* BLOCOS - STEPPERS MAIORES */
 .blocos-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
-.bloco-row{display:flex;flex-direction:column;gap:8px;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;transition:all .2s;}
+.bloco-row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;transition:all .2s;}
 .bloco-row.feito{background:rgba(74,222,128,.08);border-color:var(--success);}
-.bloco-header{display:flex;justify-content:space-between;align-items:center;}
-.bloco-num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+.bloco-num{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.05em;min-width:28px;}
 .bloco-row.feito .bloco-num{color:var(--success);}
-
-.stepper-line{display:flex;align-items:center;justify-content:center;gap:10px;}
-.stepper-line .stepper-unit-inline{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600;min-width:32px;text-align:left;}
-.bloco-row.feito .stepper-line .stepper-unit-inline{color:var(--success);}
-
+.bloco-steppers{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
 .stepper{display:flex;align-items:center;gap:2px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:2px;}
 .stepper-btn{width:40px;height:40px;border-radius:6px;background:transparent;border:none;color:var(--text);font-family:var(--mono);font-size:22px;font-weight:500;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;transition:all .12s;padding:0;}
 .stepper-btn:active{background:var(--accent-dim);color:#fff;transform:scale(.92);}
-.stepper-val{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--text);min-width:60px;text-align:center;padding:0 4px;}
+.stepper-val{font-family:var(--mono);font-size:17px;font-weight:600;color:var(--text);min-width:48px;text-align:center;padding:0 2px;}
 .bloco-row.feito .stepper-val{color:var(--success);}
-.stepper-unit{display:none;}
-.bloco-x{display:none;}
-
+.stepper-unit{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;align-self:center;margin:0 2px;}
+.bloco-x{color:var(--muted);font-family:var(--mono);font-size:14px;font-weight:500;}
 .bloco-check-btn{width:44px;height:44px;border-radius:10px;border:1.5px solid var(--border);background:transparent;display:flex;align-items:center;justify-content:center;color:transparent;font-size:22px;transition:all .15s;cursor:pointer;-webkit-appearance:none;padding:0;}
 .bloco-check-btn:active{transform:scale(.9);}
 .bloco-row.feito .bloco-check-btn{background:var(--success);border-color:var(--success);color:#0d0012;}
 
-/* CARDIO CARD */
-.cardio-card{background:linear-gradient(135deg,var(--surface),rgba(251,146,60,.04));border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;}
-.cardio-card.running{border-color:#fb923c;background:linear-gradient(135deg,var(--surface),rgba(251,146,60,.08));}
-.cardio-options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px;}
-.cardio-opt{padding:16px 8px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;-webkit-appearance:none;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:6px;}
-.cardio-opt:active{background:rgba(251,146,60,.12);border-color:#fb923c;transform:scale(.97);}
-.cardio-opt i{font-size:22px;color:#fb923c;}
-.cardio-custom{grid-column:span 2;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 12px;color:var(--text);font-family:var(--mono);font-size:14px;outline:none;-webkit-appearance:none;}
-.cardio-custom:focus{border-color:#fb923c;}
-
-.cardio-timer-display{font-family:var(--mono);font-size:58px;font-weight:700;color:var(--text);text-align:center;margin:18px 0 16px;letter-spacing:-.03em;line-height:1;transition:color .3s;}
-.cardio-timer-display.running{color:#fb923c;}
-.cardio-timer-display.paused{color:var(--warning);}
-.cardio-timer-display.stopped{color:var(--muted);}
-
-.cardio-controls{display:flex;gap:8px;}
-.cardio-controls .btn{flex:1;padding:14px 12px;font-size:12px;}
-.btn-cardio-start{background:#fb923c;color:#0d0012;border-color:#fb923c;font-weight:700;}
-.btn-cardio-start:active{background:#f97316;}
-.btn-cardio-pause{background:var(--warning);color:#0d0012;border-color:var(--warning);font-weight:700;}
-.btn-cardio-resume{background:var(--success);color:#0d0012;border-color:var(--success);font-weight:700;}
-.btn-cardio-reset{background:transparent;color:var(--muted);border-color:var(--border);}
-.btn-cardio-change{background:transparent;color:var(--muted);border-color:var(--border);}
-
-.cardio-extra{text-align:center;margin-top:10px;}
+/* SCORECARD */
 .scorecard{background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid var(--border);border-radius:16px;padding:26px 16px 22px;margin:20px 0 16px;text-align:center;transition:all .3s;}
 .scorecard.cumprida{border-color:var(--success);background:linear-gradient(135deg,rgba(74,222,128,.1),var(--surface2));}
 .sc-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
@@ -153,25 +125,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .btn-row{display:flex;gap:8px;margin-top:14px;}
 .btn-row .btn{flex:1;}
 
-/* TIMER LATERAL - FIXED RIGHT */
-.timer-side{position:fixed;right:0;top:38%;z-index:100;transition:all .3s;}
-.timer-side-btn{width:76px;min-height:108px;background:var(--accent-dim);border:1.5px solid var(--accent);border-right:none;color:#fff;padding:10px 6px;border-radius:14px 0 0 14px;font-family:var(--sans);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;-webkit-appearance:none;box-shadow:-3px 4px 14px rgba(168,85,247,.45);transition:transform .15s;}
-.timer-side-btn:active{transform:scale(.96);}
-.timer-side-icon{font-size:30px;line-height:1;}
-.timer-side-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;line-height:1.2;text-align:center;}
-.timer-side-last{font-family:var(--mono);font-size:9px;opacity:.7;font-weight:500;letter-spacing:.04em;}
-
-.timer-side.active .timer-side-btn{background:linear-gradient(180deg, var(--accent), #6d28d9);border-color:var(--accent);box-shadow:-3px 4px 14px rgba(168,85,247,.55);}
-.timer-side.warn .timer-side-btn{background:linear-gradient(180deg, #f59e0b, var(--warning));border-color:var(--warning);animation:pulse-side .6s ease-in-out infinite;color:#0d0012;}
-@keyframes pulse-side{0%,100%{opacity:1;}50%{opacity:.85;}}
-
-.timer-side-time{font-family:var(--mono);font-size:24px;font-weight:700;line-height:1;color:#fff;letter-spacing:-.02em;}
-.timer-side.warn .timer-side-time{color:#0d0012;}
-.timer-side-label-active{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.85;}
-.timer-side-progress{width:50px;height:4px;background:rgba(255,255,255,.25);border-radius:2px;overflow:hidden;position:relative;}
-.timer-side-progress-fill{position:absolute;left:0;top:0;height:100%;background:rgba(255,255,255,.9);transition:width 1s linear;}
-.timer-side-skip{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;background:rgba(0,0,0,.25);padding:5px 10px;border-radius:6px;margin-top:2px;}
-.timer-side.warn .timer-side-skip{background:rgba(0,0,0,.25);}
+/* FAB TIMER */
+.fab-timer{position:fixed;bottom:calc(20px + var(--safe-bottom));right:18px;width:62px;height:62px;border-radius:50%;background:var(--accent-dim);border:2px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 20px rgba(168,85,247,.5);z-index:100;-webkit-appearance:none;transition:all .2s;}
+.fab-timer:active{transform:scale(.92);}
+.fab-timer.active{background:var(--success);border-color:var(--success);color:#0d0012;animation:pulse 1.2s ease-in-out infinite;box-shadow:0 4px 20px rgba(74,222,128,.5);}
+.fab-timer.warn{background:var(--warning);border-color:var(--warning);color:#0d0012;animation:pulse-fast .6s ease-in-out infinite;}
+.fab-timer .icon{font-size:26px;}
+.fab-timer .time{font-size:16px;font-weight:700;line-height:1;}
+.fab-timer .time-sub{font-size:9px;opacity:.7;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
+@keyframes pulse-fast{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
 
 /* MODAL */
 .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);z-index:200;display:flex;align-items:flex-end;justify-content:center;animation:fadeIn .2s;}
@@ -212,7 +175,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .chart-title{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
 
 /* MISC */
-.toast{position:fixed;bottom:calc(30px + var(--safe-bottom));left:50%;transform:translateX(-50%) translateY(20px);background:var(--success);color:#000;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:10px 18px;border-radius:8px;opacity:0;transition:all .3s;pointer-events:none;z-index:300;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.4);}
+.toast{position:fixed;bottom:calc(100px + var(--safe-bottom));left:50%;transform:translateX(-50%) translateY(20px);background:var(--success);color:#000;font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:10px 18px;border-radius:8px;opacity:0;transition:all .3s;pointer-events:none;z-index:300;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.4);}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast.warn{background:var(--warning);}
 .toast.danger{background:var(--danger);color:#fff;}
@@ -233,6 +196,10 @@ select{width:100%;background:var(--surface2);border:1px solid var(--border);bord
   <div class="brand">
     <div class="brand-mark">20×</div>
     <div class="brand-title">Método 20×100</div>
+    <div class="unit-toggle">
+      <button class="unit-btn" id="unit-kg" onclick="setUnit('kg')">kg</button>
+      <button class="unit-btn" id="unit-lb" onclick="setUnit('lb')">lb</button>
+    </div>
   </div>
   <div class="progress-overall">
     <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
@@ -259,55 +226,6 @@ select{width:100%;background:var(--surface2);border:1px solid var(--border);bord
   </div>
   <div class="section-title">20 Exercícios · meta 100 reps cada · 2.000 total</div>
   <div id="lista-ex"></div>
-
-  <!-- BLOCO 21 - CARDIO -->
-  <div class="section-title" style="margin-top:18px;">Bloco extra · Cardio (opcional)</div>
-  <div class="cardio-card" id="cardio-card">
-    <!-- ESTADO INICIAL: ESCOLHER MODALIDADE -->
-    <div id="cardio-empty">
-      <div class="ex-top">
-        <div class="ex-num-big" style="color:#fb923c;">21</div>
-        <div class="ex-info">
-          <div class="ex-name" style="cursor:default;">Cardio</div>
-          <div class="ex-sub">
-            <span class="ex-grupo g-cardio">Cardio extra</span>
-            <span class="ex-dot">·</span>
-            <span style="font-family:var(--mono);font-size:11px;color:var(--muted);">escolha a modalidade</span>
-          </div>
-        </div>
-      </div>
-      <div class="cardio-options">
-        <button class="cardio-opt" onclick="setCardio('Caminhada')"><i class="ti ti-walk"></i> Caminhada</button>
-        <button class="cardio-opt" onclick="setCardio('Esteira')"><i class="ti ti-run"></i> Esteira</button>
-        <button class="cardio-opt" onclick="setCardio('Bicicleta')"><i class="ti ti-bike"></i> Bicicleta</button>
-        <button class="cardio-opt" onclick="setCardio('Escada')"><i class="ti ti-stairs"></i> Escada</button>
-        <input type="text" class="cardio-custom" id="cardio-custom-input" placeholder="Outro (digite e toque Enter)"
-               onkeydown="if(event.key==='Enter'){event.preventDefault();setCardio(this.value);}">
-      </div>
-    </div>
-
-    <!-- ESTADO COM MODALIDADE: CRONÔMETRO -->
-    <div id="cardio-ativo" style="display:none;">
-      <div class="ex-top">
-        <div class="ex-num-big" style="color:#fb923c;">21</div>
-        <div class="ex-info">
-          <input type="text" class="ex-name" id="cardio-modalidade-input" onchange="atualizarModalidadeCardio(this.value)">
-          <div class="ex-sub">
-            <span class="ex-grupo g-cardio">Cardio extra</span>
-            <span class="ex-dot">·</span>
-            <span class="ex-progress" id="cardio-status">Pronto pra começar</span>
-          </div>
-        </div>
-      </div>
-      <div class="cardio-timer-display stopped" id="cardio-timer">00:00</div>
-      <div class="cardio-controls" id="cardio-controls"></div>
-      <div class="cardio-extra">
-        <button class="btn btn-sm" onclick="changeCardio()" style="border-color:transparent;color:var(--muted);font-size:10px;">
-          <i class="ti ti-refresh"></i> Trocar modalidade
-        </button>
-      </div>
-    </div>
-  </div>
 
   <div class="scorecard" id="scorecard">
     <div class="sc-label">Total da sessão</div>
@@ -343,22 +261,14 @@ select{width:100%;background:var(--surface2);border:1px solid var(--border);bord
 
 </div>
 
-<!-- TIMER LATERAL -->
-<div class="timer-side" id="timer-side">
-  <button class="timer-side-btn" onclick="fabClick()">
-    <div id="timer-side-idle">
-      <i class="ti ti-stopwatch timer-side-icon"></i>
-      <div class="timer-side-label">Descanso</div>
-      <div class="timer-side-last" id="timer-last-hint"></div>
-    </div>
-    <div id="timer-side-active" style="display:none;flex-direction:column;align-items:center;gap:6px;">
-      <div class="timer-side-label-active">Descansando</div>
-      <div class="timer-side-time" id="timer-time-big">0:00</div>
-      <div class="timer-side-progress"><div class="timer-side-progress-fill" id="timer-progress-bar" style="width:0%;"></div></div>
-      <div class="timer-side-skip">Pular</div>
-    </div>
-  </button>
-</div>
+<!-- FAB TIMER -->
+<button class="fab-timer" id="fab-timer" onclick="fabClick()">
+  <span class="icon" id="fab-icon"><i class="ti ti-stopwatch"></i></span>
+  <span style="display:none;flex-direction:column;align-items:center;" id="fab-display">
+    <span class="time" id="fab-time">0:00</span>
+    <span class="time-sub">descanso</span>
+  </span>
+</button>
 
 <!-- MODAL TIMER -->
 <div class="modal-backdrop" id="timer-modal" style="display:none;" onclick="if(event.target===this)fecharModal()">
@@ -407,18 +317,10 @@ const GRUPO_LABEL = {perna:'Perna', empurrar:'Empurrar', puxar:'Puxar', braco:'B
 
 let estadoAtual = null;
 let chartInstances = {};
+let unidadeAtual = 'kg';
 
-// TIMER (descanso)
+// TIMER
 let timerState = {active:false, remaining:0, total:0, intervalId:null, audioCtx:null};
-
-// CARDIO (cronômetro progressivo)
-let cardioState = {
-  modalidade: null,
-  startedAt: null,    // timestamp do último start (ms)
-  accumulated: 0,     // segundos acumulados de runs anteriores
-  running: false,
-  intervalId: null
-};
 
 // ====== STORAGE ======
 async function dbGet(key){
@@ -467,6 +369,23 @@ function definirFase(sessoes){
   return {nome:'Teste Completo', meta:'Semana 4+ — meta: 100%', icon:'ti-trophy'};
 }
 
+// ====== UNIDADE ======
+async function setUnit(u){
+  unidadeAtual=u;
+  await dbSet('unidade', u);
+  document.getElementById('unit-kg').classList.toggle('active', u==='kg');
+  document.getElementById('unit-lb').classList.toggle('active', u==='lb');
+  // Atualizar todas as unit labels visíveis
+  document.querySelectorAll('.stepper-unit[data-unit-display]').forEach(el=>el.textContent=u);
+}
+
+async function carregarUnit(){
+  const u=await dbGet('unidade');
+  unidadeAtual=u||'kg';
+  document.getElementById('unit-kg').classList.toggle('active', unidadeAtual==='kg');
+  document.getElementById('unit-lb').classList.toggle('active', unidadeAtual==='lb');
+}
+
 // ====== TREINO ======
 async function carregarTreino(){
   let rascunho=await dbGet('rascunho');
@@ -477,24 +396,6 @@ async function carregarTreino(){
     estadoAtual.exercicios.forEach(ex=>{
       ex.blocos.forEach(b=>{if(b.reps==null)b.reps=25;});
     });
-    // Restaurar cardio
-    if(rascunho.cardio){
-      cardioState.modalidade=rascunho.cardio.modalidade||null;
-      cardioState.accumulated=rascunho.cardio.accumulated||0;
-      cardioState.running=rascunho.cardio.running||false;
-      cardioState.startedAt=rascunho.cardio.startedAt||null;
-      if(cardioState.intervalId){clearInterval(cardioState.intervalId);cardioState.intervalId=null;}
-      if(cardioState.modalidade){
-        document.getElementById('cardio-empty').style.display='none';
-        document.getElementById('cardio-ativo').style.display='block';
-        document.getElementById('cardio-modalidade-input').value=cardioState.modalidade;
-        if(cardioState.running){
-          cardioState.intervalId=setInterval(atualizarCardioDisplay, 500);
-          document.getElementById('cardio-card').classList.add('running');
-        }
-        atualizarCardioDisplay();
-      }
-    }
   } else {
     // Memorização: peso E reps por exercício
     const ultimosDados={};
@@ -509,6 +410,7 @@ async function carregarTreino(){
     }
     estadoAtual={
       data:hoje(),
+      unidade:unidadeAtual,
       exercicios:EX_PADRAO.map(e=>{
         const u=ultimosDados[e.nome];
         return {
@@ -521,13 +423,6 @@ async function carregarTreino(){
         };
       })
     };
-    // Reset cardio state
-    cardioState={modalidade:null, startedAt:null, accumulated:0, running:false, intervalId:null};
-    document.getElementById('cardio-empty').style.display='block';
-    document.getElementById('cardio-ativo').style.display='none';
-    const cci=document.getElementById('cardio-custom-input');
-    if(cci)cci.value='';
-    document.getElementById('cardio-card').classList.remove('running');
   }
 
   const fase=definirFase(sessoes);
@@ -558,41 +453,27 @@ function renderExercicios(){
           </div>
         </div>
         <div class="blocos-list">
-          ${ex.blocos.map((b,bi)=>{
-            const pesoKg=b.peso||0;
-            const pesoLb=kgToLb(pesoKg);
-            return `
+          ${ex.blocos.map((b,bi)=>`
             <div class="bloco-row ${b.feito?'feito':''}">
-              <div class="bloco-header">
-                <span class="bloco-num">Bloco ${bi+1}</span>
-                <button class="bloco-check-btn" onclick="toggleBloco(${i},${bi})" aria-label="Marcar bloco">${b.feito?'✓':''}</button>
-              </div>
-              <div class="stepper-line">
+              <span class="bloco-num">B${bi+1}</span>
+              <div class="bloco-steppers">
                 <div class="stepper">
-                  <button class="stepper-btn" onclick="ajustarPesoKg(${i},${bi},-5)">−</button>
-                  <span class="stepper-val" data-val="peso-kg">${pesoKg}</span>
-                  <button class="stepper-btn" onclick="ajustarPesoKg(${i},${bi},5)">+</button>
+                  <button class="stepper-btn" onclick="ajustarPeso(${i},${bi},-5)">−</button>
+                  <span class="stepper-val" data-val="peso">${b.peso||0}</span>
+                  <button class="stepper-btn" onclick="ajustarPeso(${i},${bi},5)">+</button>
                 </div>
-                <span class="stepper-unit-inline">kg</span>
-              </div>
-              <div class="stepper-line">
-                <div class="stepper">
-                  <button class="stepper-btn" onclick="ajustarPesoLb(${i},${bi},-5)">−</button>
-                  <span class="stepper-val" data-val="peso-lb">${pesoLb}</span>
-                  <button class="stepper-btn" onclick="ajustarPesoLb(${i},${bi},5)">+</button>
-                </div>
-                <span class="stepper-unit-inline">lb</span>
-              </div>
-              <div class="stepper-line">
+                <span class="stepper-unit" data-unit-display>${unidadeAtual}</span>
+                <span class="bloco-x">×</span>
                 <div class="stepper">
                   <button class="stepper-btn" onclick="ajustarReps(${i},${bi},-1)">−</button>
                   <span class="stepper-val" data-val="reps">${b.reps}</span>
                   <button class="stepper-btn" onclick="ajustarReps(${i},${bi},1)">+</button>
                 </div>
-                <span class="stepper-unit-inline">reps</span>
+                <span class="stepper-unit">reps</span>
               </div>
+              <button class="bloco-check-btn" onclick="toggleBloco(${i},${bi})" aria-label="Marcar bloco">${b.feito?'✓':''}</button>
             </div>
-          `;}).join('')}
+          `).join('')}
         </div>
       </div>
     `;
@@ -612,35 +493,14 @@ function toggleBloco(exIdx, bIdx){
   salvarRascunho();
 }
 
-// Conversão kg <-> lb (1 kg = 2.20462 lb)
-const LB_PER_KG = 2.20462;
-function kgToLb(kg){return Math.round((kg||0) * LB_PER_KG * 10) / 10;}
-function lbToKg(lb){return Math.round((lb||0) / LB_PER_KG * 10) / 10;}
-
-function ajustarPesoKg(exIdx, bIdx, delta){
+function ajustarPeso(exIdx, bIdx, delta){
   const b=estadoAtual.exercicios[exIdx].blocos[bIdx];
   b.peso = Math.max(0, Math.round(((b.peso||0)+delta)*10)/10);
-  atualizarPesoDisplay(exIdx, bIdx);
-  salvarRascunho();
-}
-
-function ajustarPesoLb(exIdx, bIdx, deltaLb){
-  const b=estadoAtual.exercicios[exIdx].blocos[bIdx];
-  const lbAtual = kgToLb(b.peso||0);
-  const novoLb = Math.max(0, Math.round((lbAtual + deltaLb)*10)/10);
-  b.peso = lbToKg(novoLb);
-  atualizarPesoDisplay(exIdx, bIdx);
-  salvarRascunho();
-}
-
-function atualizarPesoDisplay(exIdx, bIdx){
-  const b=estadoAtual.exercicios[exIdx].blocos[bIdx];
   const card=document.querySelectorAll('.ex-card')[exIdx];
   const row=card.querySelectorAll('.bloco-row')[bIdx];
-  const kgSpan=row.querySelector('.stepper-val[data-val="peso-kg"]');
-  const lbSpan=row.querySelector('.stepper-val[data-val="peso-lb"]');
-  if(kgSpan)kgSpan.textContent=b.peso||0;
-  if(lbSpan)lbSpan.textContent=kgToLb(b.peso||0);
+  const span=row.querySelector('.stepper-val[data-val="peso"]');
+  if(span)span.textContent=b.peso;
+  salvarRascunho();
 }
 
 function ajustarReps(exIdx, bIdx, delta){
@@ -693,15 +553,7 @@ let saveTimer=null;
 function salvarRascunho(){
   clearTimeout(saveTimer);
   saveTimer=setTimeout(()=>{
-    if(estadoAtual){
-      estadoAtual.cardio={
-        modalidade:cardioState.modalidade,
-        accumulated:cardioState.accumulated,
-        startedAt:cardioState.startedAt,
-        running:cardioState.running
-      };
-      dbSet('rascunho', estadoAtual);
-    }
+    if(estadoAtual){estadoAtual.unidade=unidadeAtual;dbSet('rascunho', estadoAtual);}
   }, 300);
 }
 
@@ -715,31 +567,20 @@ async function limparRascunho(){
 async function salvarSessao(){
   if(!estadoAtual)return;
   const reps=calcularReps(estadoAtual);
-  const cardioSeg=getCardioSegundos();
-  const temCardio=cardioState.modalidade && cardioSeg>0;
-  if(reps===0 && !temCardio){showToast('Marque um bloco ou registre cardio','warn');return;}
-  // Pausar cardio se estiver rodando
-  if(cardioState.running)pausarCardio();
+  if(reps===0){showToast('Marque ao menos um bloco','warn');return;}
   const sessao={
     id:Date.now(),
     data:estadoAtual.data,
+    unidade:unidadeAtual,
     exercicios:estadoAtual.exercicios.filter(ex=>ex.blocos.some(b=>b.feito))
   };
-  if(temCardio){
-    sessao.cardio={modalidade:cardioState.modalidade, segundos:cardioSeg};
-  }
   const all=await dbGet('sessoes')||[];
   all.push(sessao);
   await dbSet('sessoes', all);
   await dbDel('rascunho');
   const pct=Math.round((reps/2000)*100);
-  let msg=`Salvo · ${reps} reps · ${pct}%`;
-  if(temCardio)msg+=` + cardio ${formatCardioTime(cardioSeg)}`;
-  showToast(msg);
+  showToast(`Salvo · ${reps} reps · ${pct}%`);
   estadoAtual=null;
-  // Reset cardio
-  if(cardioState.intervalId){clearInterval(cardioState.intervalId);cardioState.intervalId=null;}
-  cardioState={modalidade:null, startedAt:null, accumulated:0, running:false, intervalId:null};
   await carregarTreino();
   window.scrollTo({top:0, behavior:'smooth'});
 }
@@ -772,25 +613,19 @@ async function renderHistorico(){
     const exCompletos=calcularExCompletos(s);
     const fase=definirFase(sessoes.filter(x=>x.data<=s.data));
     const cumprida=reps>=2000;
+    const u=s.unidade||'kg';
 
     let bodyHtml=`<div style="padding-top:12px;">`;
     s.exercicios.forEach(ex=>{
       const exReps=calcularRepsEx(ex);
       const pesos=ex.blocos.filter(b=>b.feito).map(b=>b.peso||0);
       const maxPeso=pesos.length?Math.max(...pesos):0;
-      const pesoLabel=maxPeso?`${maxPeso}kg · ${kgToLb(maxPeso)}lb`:'—';
       bodyHtml+=`<div class="ex-resumo">
         <span class="nome">${ex.nome}</span>
-        <span class="blocos-mini">${pesoLabel}</span>
+        <span class="blocos-mini">${maxPeso?maxPeso+u:'—'}</span>
         <span class="pct">${exReps}/100</span>
       </div>`;
     });
-    if(s.cardio){
-      bodyHtml+=`<div class="ex-resumo" style="background:rgba(251,146,60,.05);margin-top:8px;padding:10px 12px;border-radius:8px;border-bottom:none;">
-        <span class="nome"><i class="ti ti-run" style="color:#fb923c;"></i> Cardio · ${s.cardio.modalidade}</span>
-        <span class="pct" style="color:#fb923c;">${formatCardioTime(s.cardio.segundos)}</span>
-      </div>`;
-    }
     bodyHtml+=`<div style="display:flex;justify-content:flex-end;margin-top:12px;"><button class="btn btn-danger btn-sm" onclick="deletarSessao(${s.id})"><i class="ti ti-trash"></i> Remover</button></div></div>`;
 
     return `<div class="session-card">
@@ -799,6 +634,7 @@ async function renderHistorico(){
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
             <span class="session-date">${formatDate(s.data)}</span>
             <span class="fase-tag">${fase.nome}</span>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--muted);">${u}</span>
           </div>
           <div class="session-meta-row">${exCompletos}/20 ex · ${reps} reps</div>
         </div>
@@ -898,17 +734,18 @@ async function renderChartEx(){
     s.exercicios.forEach(ex=>{
       if(ex.nome===nome){
         const pesos=ex.blocos.filter(b=>b.feito).map(b=>b.peso||0);
-        if(pesos.length)pontos.push({data:s.data, max:Math.max(...pesos)});
+        if(pesos.length)pontos.push({data:s.data, max:Math.max(...pesos), u:s.unidade||'kg'});
       }
     });
   });
   if(!pontos.length){wrap.innerHTML='<div class="no-data" style="padding:20px;">Sem dados ainda.</div>';return;}
+  const u=pontos[pontos.length-1].u;
   wrap.innerHTML=`<div style="position:relative;height:200px;"><canvas id="chart-ex"></canvas></div>`;
   if(chartInstances.ex)chartInstances.ex.destroy();
   chartInstances.ex=new Chart(document.getElementById('chart-ex'),{
     type:'line',
     data:{labels:pontos.map(p=>{const x=p.data.split('-');return `${x[2]}/${x[1]}`;}), datasets:[{data:pontos.map(p=>p.max), borderColor:'#a855f7', backgroundColor:'rgba(168,85,247,.12)', borderWidth:2, pointBackgroundColor:'#a855f7', pointRadius:5, fill:true, tension:0.3}]},
-    options:chartOptions('kg', v=>v+'kg')
+    options:chartOptions(u, v=>v+u)
   });
 }
 
@@ -945,126 +782,7 @@ function importarDados(){
   input.click();
 }
 
-// ====== CARDIO ======
-function setCardio(modalidade){
-  if(typeof modalidade !== 'string')return;
-  modalidade=modalidade.trim();
-  if(!modalidade)return;
-  cardioState.modalidade=modalidade;
-  document.getElementById('cardio-empty').style.display='none';
-  document.getElementById('cardio-ativo').style.display='block';
-  document.getElementById('cardio-modalidade-input').value=modalidade;
-  atualizarCardioDisplay();
-  salvarRascunho();
-}
-
-function atualizarModalidadeCardio(val){
-  const t=(val||'').trim();
-  if(!t){
-    document.getElementById('cardio-modalidade-input').value=cardioState.modalidade||'Cardio';
-    return;
-  }
-  cardioState.modalidade=t;
-  salvarRascunho();
-}
-
-function changeCardio(){
-  if(cardioState.running && !confirm('O cronômetro está rodando. Trocar modalidade vai pausar. Continuar?'))return;
-  if(cardioState.intervalId){clearInterval(cardioState.intervalId);cardioState.intervalId=null;}
-  cardioState.modalidade=null;
-  cardioState.startedAt=null;
-  cardioState.accumulated=0;
-  cardioState.running=false;
-  document.getElementById('cardio-empty').style.display='block';
-  document.getElementById('cardio-ativo').style.display='none';
-  const customInput=document.getElementById('cardio-custom-input');
-  if(customInput)customInput.value='';
-  document.getElementById('cardio-card').classList.remove('running');
-  salvarRascunho();
-}
-
-function iniciarCardio(){
-  if(cardioState.running)return;
-  cardioState.startedAt=Date.now();
-  cardioState.running=true;
-  if(cardioState.intervalId)clearInterval(cardioState.intervalId);
-  cardioState.intervalId=setInterval(atualizarCardioDisplay, 500);
-  document.getElementById('cardio-card').classList.add('running');
-  atualizarCardioDisplay();
-  salvarRascunho();
-}
-
-function pausarCardio(){
-  if(!cardioState.running)return;
-  cardioState.accumulated += (Date.now() - cardioState.startedAt) / 1000;
-  cardioState.startedAt=null;
-  cardioState.running=false;
-  if(cardioState.intervalId){clearInterval(cardioState.intervalId);cardioState.intervalId=null;}
-  document.getElementById('cardio-card').classList.remove('running');
-  atualizarCardioDisplay();
-  salvarRascunho();
-}
-
-function resetCardio(){
-  if(!confirm('Zerar o cronômetro do cardio?'))return;
-  if(cardioState.intervalId){clearInterval(cardioState.intervalId);cardioState.intervalId=null;}
-  cardioState.startedAt=null;
-  cardioState.accumulated=0;
-  cardioState.running=false;
-  document.getElementById('cardio-card').classList.remove('running');
-  atualizarCardioDisplay();
-  salvarRascunho();
-}
-
-function getCardioSegundos(){
-  let total = cardioState.accumulated;
-  if(cardioState.running && cardioState.startedAt){
-    total += (Date.now() - cardioState.startedAt) / 1000;
-  }
-  return Math.floor(total);
-}
-
-function formatCardioTime(seg){
-  const hh=Math.floor(seg/3600);
-  const mm=Math.floor((seg%3600)/60);
-  const ss=seg%60;
-  if(hh>0)return `${hh}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
-  return `${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
-}
-
-function atualizarCardioDisplay(){
-  const display=document.getElementById('cardio-timer');
-  const status=document.getElementById('cardio-status');
-  const controls=document.getElementById('cardio-controls');
-  if(!display)return;
-  const seg=getCardioSegundos();
-  display.textContent=formatCardioTime(seg);
-  display.classList.remove('running','paused','stopped');
-  if(cardioState.running){
-    display.classList.add('running');
-    if(status)status.textContent='Rodando';
-    if(controls)controls.innerHTML=`
-      <button class="btn btn-cardio-pause" onclick="pausarCardio()"><i class="ti ti-player-pause-filled"></i> Pausar</button>
-    `;
-  } else if(cardioState.accumulated > 0){
-    display.classList.add('paused');
-    if(status)status.textContent='Pausado';
-    if(controls)controls.innerHTML=`
-      <button class="btn btn-cardio-resume" onclick="iniciarCardio()"><i class="ti ti-player-play-filled"></i> Continuar</button>
-      <button class="btn btn-cardio-reset" onclick="resetCardio()"><i class="ti ti-refresh"></i> Zerar</button>
-    `;
-  } else {
-    display.classList.add('stopped');
-    if(status)status.textContent='Pronto pra começar';
-    if(controls)controls.innerHTML=`
-      <button class="btn btn-cardio-start" onclick="iniciarCardio()"><i class="ti ti-player-play-filled"></i> Iniciar</button>
-    `;
-  }
-}
-
 // ====== TIMER ======
-let ultimoTempoUsado = 60;
-
 function fabClick(){
   if(timerState.active){
     if(confirm('Cancelar descanso?'))cancelarTimer();
@@ -1080,26 +798,24 @@ function fecharModal(){
   document.getElementById('timer-modal').style.display='none';
 }
 
-async function iniciarTimer(segundos){
+function iniciarTimer(segundos){
   fecharModal();
-  ultimoTempoUsado=segundos;
-  await dbSet('ultimoTempo', segundos);
-  atualizarHintTempo();
   if(timerState.intervalId)clearInterval(timerState.intervalId);
   timerState={active:true, remaining:segundos, total:segundos, intervalId:null, audioCtx:null};
   // Inicializa audio context com user gesture (resolve iOS)
   try{
     timerState.audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    // Silent beep pra "unlock" o audio context
     const osc=timerState.audioCtx.createOscillator();
     const gain=timerState.audioCtx.createGain();
     gain.gain.value=0;
     osc.connect(gain).connect(timerState.audioCtx.destination);
     osc.start();osc.stop(timerState.audioCtx.currentTime+0.01);
   }catch(e){}
-  atualizarTimerBar();
+  atualizarFab();
   timerState.intervalId=setInterval(()=>{
     timerState.remaining--;
-    atualizarTimerBar();
+    atualizarFab();
     if(timerState.remaining<=0)finalizarTimer();
   }, 1000);
 }
@@ -1107,13 +823,14 @@ async function iniciarTimer(segundos){
 function cancelarTimer(){
   if(timerState.intervalId)clearInterval(timerState.intervalId);
   timerState.active=false;
-  atualizarTimerBar();
-  showToast('Descanso pulado');
+  atualizarFab();
+  showToast('Descanso cancelado');
 }
 
 function finalizarTimer(){
   if(timerState.intervalId)clearInterval(timerState.intervalId);
   timerState.active=false;
+  // Beep
   if(timerState.audioCtx){
     const ctx=timerState.audioCtx;
     const now=ctx.currentTime;
@@ -1131,47 +848,28 @@ function finalizarTimer(){
     });
   }
   if(navigator.vibrate)navigator.vibrate([300, 100, 300]);
-  atualizarTimerBar();
+  atualizarFab();
   showToast('Descanso terminou — Bora!');
 }
 
-function atualizarTimerBar(){
-  const side=document.getElementById('timer-side');
-  const idle=document.getElementById('timer-side-idle');
-  const active=document.getElementById('timer-side-active');
-  const progress=document.getElementById('timer-progress-bar');
+function atualizarFab(){
+  const fab=document.getElementById('fab-timer');
+  const icon=document.getElementById('fab-icon');
+  const display=document.getElementById('fab-display');
   if(timerState.active){
-    idle.style.display='none';
-    active.style.display='flex';
+    icon.style.display='none';
+    display.style.display='flex';
     const mm=Math.floor(timerState.remaining/60);
     const ss=timerState.remaining%60;
-    document.getElementById('timer-time-big').textContent=`${mm}:${String(ss).padStart(2,'0')}`;
-    side.classList.add('active');
-    const pct=(timerState.remaining/timerState.total)*100;
-    progress.style.width=pct+'%';
-    if(timerState.remaining<=5){side.classList.add('warn');}
-    else{side.classList.remove('warn');}
+    document.getElementById('fab-time').textContent=`${mm}:${String(ss).padStart(2,'0')}`;
+    fab.classList.add('active');
+    if(timerState.remaining<=5)fab.classList.add('warn');
+    else fab.classList.remove('warn');
   } else {
-    idle.style.display='block';
-    active.style.display='none';
-    side.classList.remove('active','warn');
-    progress.style.width='0%';
+    icon.style.display='';
+    display.style.display='none';
+    fab.classList.remove('active','warn');
   }
-}
-
-async function carregarUltimoTempo(){
-  const t=await dbGet('ultimoTempo');
-  if(t)ultimoTempoUsado=t;
-  atualizarHintTempo();
-}
-
-function atualizarHintTempo(){
-  const el=document.getElementById('timer-last-hint');
-  if(!el)return;
-  const mm=Math.floor(ultimoTempoUsado/60);
-  const ss=ultimoTempoUsado%60;
-  const fmt=mm>0?`${mm}:${String(ss).padStart(2,'0')}`:`${ss}s`;
-  el.textContent=`último: ${fmt}`;
 }
 
 // ====== TOAST ======
@@ -1184,7 +882,7 @@ function showToast(msg, tipo){
 
 // ====== INIT ======
 (async()=>{
-  await carregarUltimoTempo();
+  await carregarUnit();
   await carregarTreino();
 })();
 </script>
