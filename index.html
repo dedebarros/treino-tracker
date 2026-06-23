@@ -224,6 +224,25 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .mantra{text-align:center;padding:20px 16px;font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.8;letter-spacing:.04em;}
 .mantra .strong{color:var(--accent);}
 select{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--text);font-family:var(--mono);font-size:14px;outline:none;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%239d85b3' d='M6 8L0 0h12z'/></svg>");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;}
+
+/* ===== MOBILE: barra de descanso fina e discreta no rodape ===== */
+@media (max-width:768px){
+  .app{padding-bottom:calc(66px + var(--safe-bottom));}
+  .timer-side{top:auto;bottom:0;left:0;right:0;z-index:150;}
+  .timer-side-btn{width:100%;min-height:0;flex-direction:row;justify-content:center;align-items:center;gap:14px;padding:9px 16px calc(9px + var(--safe-bottom));border:none;border-top:1px solid var(--border);border-radius:0;background:rgba(26,0,36,.94);box-shadow:0 -4px 16px rgba(0,0,0,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}
+  #timer-side-idle{display:flex !important;flex-direction:row;align-items:center;gap:9px;}
+  .timer-side-icon{font-size:19px;color:var(--accent);}
+  .timer-side-label{font-size:11px;color:var(--text);}
+  .timer-side-last{font-size:10px;}
+  #timer-side-active{flex-direction:row !important;gap:14px !important;}
+  .timer-side-label-active{font-size:10px;}
+  .timer-side-time{font-size:20px;}
+  .timer-side-progress{width:110px;height:5px;}
+  .timer-side-skip{margin-top:0;}
+  .timer-side.active .timer-side-btn{background:linear-gradient(90deg,var(--accent),#6d28d9);border-top-color:var(--accent);box-shadow:0 -4px 16px rgba(168,85,247,.45);}
+  .timer-side.warn .timer-side-btn{background:linear-gradient(90deg,#f59e0b,var(--warning));border-top-color:var(--warning);box-shadow:0 -4px 16px rgba(245,158,11,.5);}
+  .toast{bottom:calc(80px + var(--safe-bottom));}
+}
 </style>
 </head>
 <body>
